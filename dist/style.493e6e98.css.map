@@ -1,0 +1,1 @@
+{"version":3,"sources":["style/style.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"style.493e6e98.css","sourceRoot":"..","sourcesContent":[".Success {\r\n  color: green;\r\n}\r\n\r\n.Error {\r\n  color: red;\r\n}\r\n"]}
