@@ -1,7 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*--------------------------
+    body
+---------------------------*/
+
+body {
+  background-color: #9be3de;
+}
+.header {
+  color: rgb(11, 43, 49);
+  padding: 0.5em 0;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.register {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  background-color: #9be3de;
+}
+input {
+  margin: 10px;
+}
+.name,
+.e-mail {
+  font-size: 1.5em;
+  line-height: 50px;
+  width: 30%;
+  height: auto;
+}
+.Send {
+  border-radius: 25px;
+  background-color: #f8afc9;
+  padding: 10px;
+  font-size: 1.5em;
+  width: auto;
+}
+.Send:hover {
+  font-size: 1.5em;
+  border-radius: 25px;
+  background-color: #f7c1d4;
+  padding: 10px;
+
+  width: auto;
+}
+
+.Send:active {
+  font-size: 1.5em;
+  border-radius: 25px;
+  background-color: #f578a4;
+  padding: 10px;
+
+  width: auto;
+}
+
+#participants-list {
+  text-transform: uppercase;
+  color: rgb(11, 43, 49);
+  background-color: #d3f7f5;
+}
+#participants-list li {
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  text-align: start;
+}
+.status {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.status-message {
+  width: 100%;
+  background-color: #beebe9;
+  font-size: 3em;
+  color: rgb(48, 119, 121);
+}
 .Success {
-  color: green;
+  width: 100%;
+  background-color: #beebe9;
+  font-size: 3em;
+  color: rgb(48, 121, 48);
 }
 
 .Error {
-  color: red;
+  width: 100%;
+  background-color: #beebe9;
+  font-size: 3em;
+  color: rgb(216, 69, 69);
 }
