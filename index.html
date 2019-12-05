@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./style/style.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
   </head>
   <body>
     <div class="header"><h1 class="title">Secret Santa</h1></div>
@@ -28,14 +29,23 @@
         type="text"
         placeholder="E-mail"
       />
-      <button class="Send" type="submit">Register</button>
+      <input
+        id="participant-wish"
+        name="participant-wish"
+        class="wish"
+        type="text"
+        placeholder="What present would you like"
+      />
+      <button class="Add" type="submit">Add</button>
       <button class="Reset" type="reset">Clear</button>
       <button class="Start">Start</button>
     </form>
+
     <div class="status">
       <h4 class="status-message">Add Participant</h4>
     </div>
     <ol id="participants-list"></ol>
+    <button class="send">send</button>
 
     <script src="./function/functionality.js" async defer></script>
   </body>

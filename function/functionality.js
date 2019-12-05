@@ -1,6 +1,7 @@
 let AddParticipant = document.querySelector("#register-form");
 let GetName = document.querySelector("#participant-name");
 let GetEmail = document.querySelector("#participant-email");
+let GetWish = document.querySelector("#participant-wish");
 let display = document.querySelector("#participants-list");
 let status = document.querySelector(".status-message");
 let ResetList = document.querySelector(".Reset");
@@ -25,36 +26,56 @@ AddParticipant.addEventListener("submit", function(event) {
   status.innerText = "Participant Added Successfully";
 
   //ignore incomplete submitions
-  if (GetName.value.length < 1 || GetEmail.value.length < 1) {
+  if (
+    GetName.value.length < 1 ||
+    GetEmail.value.length < 1 ||
+    GetWish.value.length < 1
+  ) {
     status.className = "Error";
-    status.innerText = "Please Complete the Form";
+    status.innerText = "Please Complete The Form";
     return;
   }
+
+  //reset event
+
+  ResetList.addEventListener("click", function() {
+    status.className = "Cleared";
+    status.innerText = "Succesfully Cleared, Add New Participants";
+  });
 
   // add to the objetc in the format of
   //DATA = {
   //people : [
-  //{name : name, email: email} ]
+  //{name : name, email: email , wish: present} ]
 
-  Data.people.push({ name: GetName.value, email: GetEmail.value });
+  Data.people.push({
+    name: GetName.value,
+    email: GetEmail.value,
+    wish: GetWish.value
+  });
 
   //add person to list
   let node = document.createElement("Li");
   let namenode = document.createElement("span");
   let emailnode = document.createElement("span");
+  let wishnode = document.createElement("span");
 
   namenode.className = "nameNode";
   emailnode.className = "emailNode";
+  wishnode.className = "wishNode";
 
   namenode.innerText = "Name : " + GetName.value;
   emailnode.innerText = "EMail : " + GetEmail.value;
+  wishnode.innerText = "Wish For : " + GetWish.value;
   node.appendChild(namenode);
   node.appendChild(emailnode);
+  node.appendChild(wishnode);
   display.appendChild(node);
 
   //clears input fields
   GetName.value = "";
   GetEmail.value = "";
+  GetWish.value = "";
 
   //save data
   //para guardar objetos en storage, hacerlos en strings
@@ -72,6 +93,7 @@ AddParticipant.addEventListener("reset", function(event) {
   //clears input fields
   GetName.value = "";
   GetEmail.value = "";
+  GetWish.value = "";
 
   localStorage.setItem("participants", "");
   localStorage.setItem("Data", "");
@@ -105,20 +127,10 @@ let secretSanta = function() {
 
   //shuffle the array
   shuffle(initialPeople);
-
-  //clone the array
-  /*-------------------------------
-  ERROR
-
-----------------------------------*/
-  //shuffledClone = initialPeople.slice();
-  //RecivingPerson = shuffledClone.unshift(shuffledClone.pop());
 };
 
 StartButton.addEventListener("click", function() {
   secretSanta();
-
-  // for (let i = 0; i < shuffledClone.length; i++) {}
 });
 
 function shuffle(a) {
