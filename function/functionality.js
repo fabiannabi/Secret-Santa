@@ -115,18 +115,25 @@ let initialPeople;
 let shuffledPeople;
 
 let secretSanta = function() {
-  let initialPeople = JSON.parse(localStorage.getItem("Data")).people;
-
+  try {
+    initialPeople = JSON.parse(localStorage.getItem("Data")).people;
+  } catch {
+    status.className = "Error";
+    status.innerText = "Please Complete The Form";
+    return;
+  }
+  //shuffle the array
   console.log("initialPeople");
   console.log(initialPeople);
+
+  initialPeople = shuffle(initialPeople);
   shuffledPeople = initialPeople.map(people => {
     return people;
   });
-  console.log("shuffledPeople");
-  console.log(shuffledPeople);
 
-  //shuffle the array
-  shuffle(initialPeople);
+  console.log("shuffled");
+  console.log(shuffledPeople);
+  shuffledPeople.unshift(shuffledPeople.pop());
 };
 
 StartButton.addEventListener("click", function() {
@@ -140,3 +147,34 @@ function shuffle(a) {
   }
   return a;
 }
+
+//send e-mail
+
+document.querySelector(".send").addEventListener("click", function() {
+  if (Data.people.length < 4) {
+    status.className = "Error";
+    status.innerText = "Please Add At Least 4 People";
+    return;
+  }
+
+  initialPeople.forEach(people => {
+    let recipient = shuffledPeople.shift();
+    Email.send({
+      Host: "smtp.elasticemail.com",
+      Username: "barrothkiller@gmail.com",
+      Password: "1adef199-7309-43b4-9509-958512bfc7f3",
+      To: people.email,
+      From: "barrothkiller@gmail.com",
+      Subject: "Intercambio Navideño",
+      Body:
+        "Hola " +
+        people.name +
+        " Te toco regalar a : " +
+        recipient.name +
+        " Esta persona le gustaria lo siguiente : " +
+        recipient.wish
+    }).then(message => console.log(message));
+
+    console.log(people.name + " le regala a " + recipient.name);
+  });
+});

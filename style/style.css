@@ -113,10 +113,24 @@ input {
   color: rgb(48, 121, 48);
 }
 
-.nameNode,
-.emailNode,
-.wishNode {
-  width: 100%;
+.nameNode {
+  padding: 0.5em 0;
+  border-top: solid 2px lightgray;
   text-align: left;
-  padding: 5px;
+  width: 30%;
+}
+
+.emailNode {
+  padding: 0.5em 0;
+  border-top: solid 2px lightgray;
+  text-align: left;
+  width: 40%;
+}
+
+.wishNode {
+  padding: 0.5em 0;
+  border-top: solid 2px lightgray;
+  padding-left: 1em;
+  width: 30%;
+  text-align: left;
 }
