@@ -1,3 +1,4 @@
+import secret from "./env";
 let AddParticipant = document.querySelector("#register-form");
 let GetName = document.querySelector("#participant-name");
 let GetEmail = document.querySelector("#participant-email");
@@ -8,6 +9,7 @@ let ResetList = document.querySelector(".Reset");
 let StartButton = document.querySelector(".Start");
 
 //check if theres Data in localstorage so we can keep track of previous changes between page reloads
+let Data;
 if (localStorage.getItem("Data")) {
   //if there is, use it for Data
   Data = JSON.parse(localStorage.getItem("Data"));
@@ -15,8 +17,6 @@ if (localStorage.getItem("Data")) {
   //if not initialize data as an empty object
   Data = { people: [] };
 }
-console.log(Data);
-
 AddParticipant.addEventListener("submit", function(event) {
   //submit pide peticion a los servidores cuando el boton es presionado, para eso se previene con ..
   event.preventDefault();
@@ -160,11 +160,11 @@ document.querySelector(".send").addEventListener("click", function() {
   initialPeople.forEach(people => {
     let recipient = shuffledPeople.shift();
     Email.send({
-      Host: "smtp.elasticemail.com",
-      Username: "barrothkiller@gmail.com",
-      Password: "1adef199-7309-43b4-9509-958512bfc7f3",
+      Host: sectet.host,
+      Username: sectet.username,
+      Password: sectet.password,
       To: people.email,
-      From: "barrothkiller@gmail.com",
+      From: sectet.fromEmail,
       Subject: "Intercambio Navideño",
       Body:
         "Hola " +
@@ -174,7 +174,6 @@ document.querySelector(".send").addEventListener("click", function() {
         " Esta persona le gustaria lo siguiente : " +
         recipient.wish
     }).then(message => console.log(message));
-
     console.log(people.name + " le regala a " + recipient.name);
   });
 });
